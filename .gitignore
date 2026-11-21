@@ -11,3 +11,5 @@
 *.tfstate.*.backup
 *.tfstate.backup
 *_override.tf
+# local worktrees
+/wt/

@@ -1,6 +1,7 @@
 name: build-alpine-test-container
 
 on:
+  workflow_dispatch:
   push:
     # Push events on main branch
     branches:
