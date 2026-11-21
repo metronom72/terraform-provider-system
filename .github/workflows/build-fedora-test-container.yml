@@ -23,7 +23,6 @@ env:
 jobs:
   default:
     name: Build/push image
-    if: github.repository == 'neuspaces/terraform-provider-system'
 
     runs-on: ubuntu-22.04
   
