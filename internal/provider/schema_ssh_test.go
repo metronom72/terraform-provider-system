@@ -120,7 +120,14 @@ func TestAccProviderConnect_SshPassword(t *testing.T) {
 				),
 			)
 
-			testAccProviderConnectTestExpectError(t, providerConfig, regexp.MustCompile(regexp.QuoteMeta(`ssh: handshake failed: ssh: unable to authenticate`)))
+			// Два варианта, потому что x/crypto 0.52 стал называть один и тот
+			// же отказ иначе. На неверный пароль сервер отвечает
+			// USERAUTH_FAILURE (тип 51) там, где клиент ждал запроса
+			// keyboard-interactive (тип 60); прежние версии сводили это к
+			// общему "unable to authenticate", нынешние сообщают про тип
+			// сообщения. Поведение не изменилось -- неверный пароль
+			// по-прежнему отвергается, -- изменился только текст.
+			testAccProviderConnectTestExpectError(t, providerConfig, regexp.MustCompile(`ssh: handshake failed: ssh: (unable to authenticate|unexpected message type 51)`))
 		})
 	})
 

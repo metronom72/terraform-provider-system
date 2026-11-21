@@ -78,24 +78,24 @@ jobs:
         target:
           - 
             name: alpine
-            image: ghcr.io/neuspaces/terraform-provider-system/alpine-acctest
-            image_tag: 13cdac2
+            image: ghcr.io/${{ github.repository }}/alpine-acctest
+            image_tag: 4b80812
             test_path: test/alpine
             host_port: 10022
             private_key_file: root-ed25519
             extra_run_args: --tmpfs /tmp --tmpfs /run -v /sys/fs/cgroup:/sys/fs/cgroup:ro
           - 
             name: debian
-            image: ghcr.io/neuspaces/terraform-provider-system/debian-acctest
-            image_tag: 560b08f
+            image: ghcr.io/${{ github.repository }}/debian-acctest
+            image_tag: 4b80812
             test_path: test/debian
             host_port: 11022
             private_key_file: root-ed25519
             extra_run_args: --tmpfs /tmp --tmpfs /run --tmpfs /run/lock --mount type=bind,source=/sys/fs/cgroup,target=/sys/fs/cgroup --cgroupns=host
           - 
             name: fedora
-            image: ghcr.io/neuspaces/terraform-provider-system/fedora-acctest
-            image_tag: e3d717a
+            image: ghcr.io/${{ github.repository }}/fedora-acctest
+            image_tag: 4b80812
             test_path: test/fedora
             host_port: 12022
             private_key_file: root-ed25519
